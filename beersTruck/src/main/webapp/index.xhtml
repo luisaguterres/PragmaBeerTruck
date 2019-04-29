@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"  ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<title><ui:insert name="title">Beer Truck</ui:insert></title>
+	<link href='https://fonts.googleapis.com/css?family=Germania One' rel='stylesheet'/>
+	<link rel="stylesheet" type="text/css" href="resources/css/styles.css" />	
+</h:head>
+<h:body>
+	<f:metadata>
+		<f:event listener="#{containerMB.loadContainersList()}"
+			type="preRenderView"></f:event>
+	</f:metadata>
+			
+			<h1 class="text_center">Beers Truck</h1>
+			
+			<h:form style="border:none; box-shadow: none">
+				<p:commandButton value="Open Truck Doors" id="open_truck" ajax="false" action="#{containerMB.openTruckDoors}" styleClass="action_buttons"/>
+			</h:form>
+			<p:messages />
+			
+			<h:form>
+			
+			<p:dataGrid id="containersList" var="container" styleClass="truck"
+					value="#{containerMB.containers}" columns="3" layout="grid"
+					rows="5">
+					
+					 <p:panel styleClass="container">
+            			<h:panelGrid columns="1" style="width:100%" >
+            				<h:outputText value="#{container.beer.name}" styleClass="beer_title" style="width: 100px;white-space: normal"/>
+            				<h:outputText value="Measured Temperature:" styleClass="beer_status"/>
+            				<h:outputText value="#{container.beer.tempActual}" styleClass="beer_status">
+            					<f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00"/>
+            				</h:outputText>
+            				<h:outputText value="Status: #{container.beer.status}" style="#{(container.beer.status eq 'Stable') ? 'background-color:#99ff99' : (container.beer.status eq 'Alert' ? 'background-color:#ffff66' : 'background-color:#ff9999' )}" styleClass="beer_status"/>
+            				<h:outputText value="Minimum Temperature: #{container.beer.tempMinimum}" styleClass="temp_info"/>
+            				<h:outputText value="Maximum Temperature: #{container.beer.tempMaximum}" styleClass="temp_info"/>
+            			</h:panelGrid>
+            		</p:panel>
+
+				</p:dataGrid>
+				
+				
+						
+			</h:form>		
+	
+</h:body>
+</html>

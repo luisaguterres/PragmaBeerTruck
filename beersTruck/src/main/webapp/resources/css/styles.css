@@ -1,0 +1,127 @@
+body{
+	background-image: url('../images/beer.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+h1{
+	background-image: url('../images/ribbon.png');
+	background-repeat: no-repeat;
+	background-position: center;
+	color: #FFD700;
+	o
+}
+
+h3{
+	text-align: center;
+	margin: 10px;
+}
+
+h4{
+	text-align: left;
+	margin-left: 10px;
+}
+
+h5{
+	text-align: left;
+	margin-left: 10px;
+}
+
+form{
+	box-shadow: 1px 1px 2px #C3C3C3;
+	border: 3px solid grey;
+	position: relative;
+	width: 60%;
+	position: relative;
+  	overflow: hidden;
+  	margin: 0 auto 15px;
+  	margin-bottom: 35px;
+}
+
+td {
+  height: 50px;
+  vertical-align: bottom;
+}
+
+label{
+	font-weight: bold;
+}
+
+table {
+	border: 2px;
+	width: 75%;
+	text-align: center;
+	font-size: 17px;
+}
+
+p{
+	font-size: 18px;
+	margin-left: 10px;
+}
+
+div.form_content{
+	margin-left: 20px;
+	margin-bottom: 15px;
+	font-size: 18px;
+}
+
+.container{
+	background-color: #C3C3C3;
+	align-content: center;	
+	box-shadow: 1px 1px 2px #FFFFFF;
+	opacity: 0.8;  	
+  	color: black;
+}
+
+.truck{	
+	background-color: #FFFFFF;
+	align-content: center;	
+	opacity: 1;  	
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.beer_status{
+	margin-right: 10px;
+}
+
+.action_buttons{
+	display: block;
+	align-content: center;	
+	text-align: center;
+	padding-top: 5px;
+	width: 50%;
+	margin: auto;	
+}
+
+.text_center{
+	text-align: center;
+	padding: 10px;
+}
+
+.temp_info{
+	font-size: 14px;
+}
+
+.remove_container{
+	position: right;
+	padding-right: -10px;
+	vertical-align: right;
+}
+
+.navbar{
+	background:#FFF;
+}
+
+.beer_title{
+	font-size: 25px;
+	color: #b30000;
+	width: 100%;
+	text-align: center;	
+	opacity: 1;
+	font-family: Germania One;
+}
