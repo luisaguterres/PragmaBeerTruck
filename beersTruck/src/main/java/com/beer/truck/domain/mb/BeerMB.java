@@ -21,15 +21,13 @@ public class BeerMB implements Serializable{
 	
 	BeerBusiness beerBusines = new BeerBusiness();	
 	
-	public void loadBeersList() {	
-		
+	public void loadBeersList() {		
 		if(beers.size() == 0) {
-			beers = listBeers();
-			beers.forEach(beer -> System.out.println(beer.getTempActual()));
+			beers = listBeers();			
 		}		
 	}
 	
-	public List<Beer> listBeers(){
+	private List<Beer> listBeers(){
 		beers = beerBusines.listBeers();
 		return beers;
 	}
@@ -42,33 +40,8 @@ public class BeerMB implements Serializable{
 		Beer beer =  beerBusines.searchBeerByName(beerName);
 		return beer;
 	}
-	
-	public void newBeer() {
-		beerBusines.save(beer);
-		loadBeersList();
-		//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "The Beer was saved Successfully", null));
-	}
-	
-	public void removeContainer() {
-		beerBusines.remove(beer);
-		loadBeersList();
-		//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "The Beer was successful removed!", null));
-	}
-
-	
+		
 	public List<Beer> getBeers() {
 		return beers;
-	}
-	
-	public void setBeers(List<Beer> beers) {
-		this.beers = beers;
-	}
-
-	public Beer getBeer() {
-		return beer;
-	}
-
-	public void setBeer(Beer beer) {
-		this.beer = beer;
-	}
+	}	
 }

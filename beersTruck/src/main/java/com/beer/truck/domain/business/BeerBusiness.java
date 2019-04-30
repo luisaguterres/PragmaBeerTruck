@@ -12,21 +12,12 @@ public class BeerBusiness implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	List<Beer> beers = new ArrayList<Beer>();
-		
-	public void save(Beer beer){
-		this.beers.add(beer);
-	}
-	
-	public void remove(Beer beer){
-		this.beers.remove(beer.getId());
-	}
 	
 	public Beer search (Beer beer){
-		return this.beers.get(beer.getId());
+		return beers.stream().filter(b -> b == beer).findFirst().get();
 	}
 	
-	public Beer searchBeerByName (String beerName){	
-		System.out.println("Beer business >> " + beers.size());
+	public Beer searchBeerByName (String beerName){		
 		return beers.stream().filter(b -> b.getName() == beerName).findFirst().get();
 	}
 	
