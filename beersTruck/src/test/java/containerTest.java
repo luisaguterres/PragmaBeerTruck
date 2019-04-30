@@ -16,17 +16,19 @@ class containerTest {
 	ContainerMB containerMB = new ContainerMB();
 	BeerMB beerMB = new BeerMB();
 	
-	Container container = new Container();	
-	
+	Container container = new Container();
+	Beer beer = new Beer();
+		
 	@BeforeEach
 	public void loadContainersList(){		
 		containerMB.loadContainersList();		
 	}		
 	
-	public void createContainer() {		
-		Beer beer = new Beer();
+	@BeforeEach
+	public void createContainers() {		
+		
 		beer.setId(1);		
-		beer.setName("Beer Test");
+		beer.setName("Beer Test 1");
 		beer.setTempMaximum(7.0);
 		beer.setTempMinimum(4.0);
 		beer.setTempActual(4.0);
@@ -42,8 +44,7 @@ class containerTest {
 	}
 	
 	@Test
-	void updateBeerTemperature() {		
-		createContainer();
+	void updateBeerMeasuredTemperature() {		
 		assertEquals(4.0, containerMB.measuredTemperature(container, 0.2), 4.2);		
 	}
 	
@@ -56,5 +57,10 @@ class containerTest {
 		List<Container> containersTempUpdate = containerMB.getContainers();	
 		
 		assertNotSame(tempBefore, containersTempUpdate.get(0).getBeer().getTempActual());
+	}
+	
+	@Test
+	void beerStableStatus() {
+		assertEquals( "Stable", containerMB.updateContainerStatus(container));
 	}
 }
