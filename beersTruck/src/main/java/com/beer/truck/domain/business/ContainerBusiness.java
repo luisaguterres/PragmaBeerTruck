@@ -14,20 +14,8 @@ public class ContainerBusiness implements Serializable{
 	private BeerBusiness beerBusiness = new BeerBusiness();
 	
 	private List<Container> containersList = new ArrayList<Container>(); 
-			
-	public void save(Container container){
-		this.containersList.add(container);
-	}
-		
-	public void remove(Container container){
-		this.containersList.remove(container);
-	}
 	
-	public Container search(Container container){
-		return this.containersList.get(container.getId());
-	}
-
-	public List<Container> getContainersList() {
+	public List<Container> listContainers() {
 		
 		if (this.containersList.size() == 0) {
 			
