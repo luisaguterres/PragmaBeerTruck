@@ -9,24 +9,29 @@ import com.beer.truck.domain.entity.Beer;
 import com.beer.truck.domain.mb.BeerMB;
 
 class beerTest {
-	BeerMB beerBean = new BeerMB();
+	BeerMB beerMB = new BeerMB();
 	
-	List<Beer> beers = beerBean.getBeers();
+	List<Beer> beers = beerMB.getBeers();
 	
 	@BeforeEach
 	public void loadBeers() {
-		beers = beerBean.listBeers();
+		beerMB.loadBeersList();
+		beers = beerMB.getBeers();
 	}
 		
-	//check if the system is loading the beers list
 	@Test
 	void loadBeersList() {		
 		assertEquals(6, beers.size());
 	}
 	
 	@Test
-	void insertActualTemperature(){		
-		List<Beer> beersActualTemperatura = beerBean.getBeers();		
+	void searchBeer() {		
+		assertEquals(beers.get(0), beerMB.search(beers.get(0)));
+	}
+	
+	@Test
+	void insertActualTemperatureAtTheFirstTime(){		
+		List<Beer> beersActualTemperatura = beerMB.getBeers();		
 		for(Beer beer: beersActualTemperatura) {
 			assertEquals(beer.getTempMinimum(), beer.getTempActual());
 		}
@@ -34,10 +39,10 @@ class beerTest {
 		
 	@Test
 	void searchBeerByName(){
-		Beer beer1 = beerBean.searchBeerByName("IPA");
+		Beer beer1 = beerMB.searchBeerByName("IPA");
 		assertEquals(beer1.getName(), "IPA");
 		
-		Beer beer2 = beerBean.searchBeerByName("Pale Ale");
+		Beer beer2 = beerMB.searchBeerByName("Pale Ale");
 		assertEquals(beer2.getName(), "Pale Ale");
 	}	
 }
