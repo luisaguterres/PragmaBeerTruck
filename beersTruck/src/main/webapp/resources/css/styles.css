@@ -50,7 +50,8 @@ table {
 }
 
 .beer_status{
-	margin-right: 10px;
+	margin-right: 10px;	
+	font-weight: bold;
 }
 
 .action_buttons{
@@ -69,7 +70,7 @@ table {
 
 .temp_info{
 	font-size: 14px;	
-	padding-bottom: 2px;
+	padding-bottom: 2px;	
 }
 
 .remove_container{
