@@ -12,21 +12,6 @@ h1{
 	o
 }
 
-h3{
-	text-align: center;
-	margin: 10px;
-}
-
-h4{
-	text-align: left;
-	margin-left: 10px;
-}
-
-h5{
-	text-align: left;
-	margin-left: 10px;
-}
-
 form{
 	box-shadow: 1px 1px 2px #C3C3C3;
 	border: 3px solid grey;
@@ -43,26 +28,11 @@ td {
   vertical-align: bottom;
 }
 
-label{
-	font-weight: bold;
-}
-
 table {
 	border: 2px;
 	width: 75%;
 	text-align: center;
 	font-size: 17px;
-}
-
-p{
-	font-size: 18px;
-	margin-left: 10px;
-}
-
-div.form_content{
-	margin-left: 20px;
-	margin-bottom: 15px;
-	font-size: 18px;
 }
 
 .container{
@@ -77,12 +47,6 @@ div.form_content{
 	background-color: #FFFFFF;
 	align-content: center;	
 	opacity: 1;  	
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
 }
 
 .beer_status{
@@ -104,17 +68,14 @@ div.form_content{
 }
 
 .temp_info{
-	font-size: 14px;
+	font-size: 14px;	
+	padding-bottom: 2px;
 }
 
 .remove_container{
 	position: right;
 	padding-right: -10px;
 	vertical-align: right;
-}
-
-.navbar{
-	background:#FFF;
 }
 
 .beer_title{
@@ -124,4 +85,5 @@ div.form_content{
 	text-align: center;	
 	opacity: 1;
 	font-family: Germania One;
+	font-weight: bold;
 }

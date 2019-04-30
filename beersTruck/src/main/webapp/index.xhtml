@@ -22,9 +22,11 @@
 			
 			<h:form style="border:none; box-shadow: none">
 				<p:commandButton value="Open Truck Doors" id="open_truck" ajax="false" action="#{containerMB.openTruckDoors}" styleClass="action_buttons"/>
-			</h:form>
-			<p:messages />
 			
+				<p:messages id="messages" showDetail="true" closable="true"/>
+		    
+		    </h:form>
+		    
 			<h:form>
 			
 			<p:dataGrid id="containersList" var="container" styleClass="truck"
@@ -35,20 +37,17 @@
             			<h:panelGrid columns="1" style="width:100%" >
             				<h:outputText value="#{container.beer.name}" styleClass="beer_title" style="width: 100px;white-space: normal"/>
             				<h:outputText value="Measured Temperature:" styleClass="beer_status"/>
-            				<h:outputText value="#{container.beer.tempActual}" styleClass="beer_status">
+            				<h:outputText value="#{container.beer.tempActual}" style="#{(container.beer.status eq 'Stable') ? 'background-color:#99ff99' : (container.beer.status eq 'Alert' ? 'background-color:#ffff66' : 'background-color:#ff9999' )}" styleClass="beer_status">
             					<f:convertNumber type="number" groupingUsed="true" minFractionDigits="2" pattern="#0.00"/>
             				</h:outputText>
-            				<h:outputText value="Status: #{container.beer.status}" style="#{(container.beer.status eq 'Stable') ? 'background-color:#99ff99' : (container.beer.status eq 'Alert' ? 'background-color:#ffff66' : 'background-color:#ff9999' )}" styleClass="beer_status"/>
+            				
             				<h:outputText value="Minimum Temperature: #{container.beer.tempMinimum}" styleClass="temp_info"/>
             				<h:outputText value="Maximum Temperature: #{container.beer.tempMaximum}" styleClass="temp_info"/>
             			</h:panelGrid>
             		</p:panel>
 
-				</p:dataGrid>
-				
-				
+				</p:dataGrid>				
 						
-			</h:form>		
-	
+			</h:form>			
 </h:body>
 </html>
