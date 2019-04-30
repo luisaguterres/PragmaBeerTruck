@@ -4,8 +4,9 @@ import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -28,48 +29,38 @@ public class ContainerMB implements Serializable{
 	
 	public void loadContainersList(){		
 		if(containers.size() == 0) {
-			containers = contBusiness.getContainersList();		
+			containers = contBusiness.listContainers();		
 		}		
 	}
 			
 	public Container searchContainerById(Integer idContainer){		
-		Container container = containers.stream().filter(c -> c.getId() == idContainer).findFirst().get();
-		return container;
-	}
-	
-	public void newContainer() {
-		contBusiness.save(container);
-		
-		//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "A new Container was loaded at the Truck!", null));
-	}
-	
-	public void removeContainer() {
-		contBusiness.remove(container);
-		
-		//FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "The Container was successful removed!", null));
+		return containers.stream().filter(c -> c.getId() == idContainer).findFirst().get();
 	}
 	
 	public void openTruckDoors() {		
 		Double tempIncrease = 0.2;
 						
 		containers.forEach(cont -> cont.getBeer().setTempActual(measuredTemperature(cont, tempIncrease)));		
-		containers.forEach(cont -> cont.getBeer().setStatus(updateContainerStatus(cont.getBeer().getTempActual(), cont.getBeer().getTempMinimum(), cont.getBeer().getTempMaximum())));
+		containers.forEach(cont -> cont.getBeer().setStatus(updateContainerStatus(cont)));
 		
 	}
 
-	private String updateContainerStatus(Double measured, Double min, Double max) {
+	public String updateContainerStatus(Container container) {
 		
-		Double difference = max - min;
+		Double min = container.getBeer().getTempMinimum();
+		Double max = container.getBeer().getTempMaximum();
+		Double measured = container.getBeer().getTempActual();
 		
-		if(measured < (min + difference * 0.60)){
-   			return "Stable";
-   			//beer_status.style.backgroundColor = "#99ff99";
+		Double difference = max - min; 
+		
+		if(measured < (min + difference * 0.60)){			
+   			return "Stable";   			
         }else if (measured < (min + difference * 0.80)){
-        	return "Alert";
-        	//beer_status.style.backgroundColor = "#ffff66";
+        	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "", "The temperature of "+container.getBeer().getName()+" container is getting too high."));
+        	return "Alert";        	
         }else{
-        	return "Danger";
-        	//beer_status.style.backgroundColor = "#ff9999";
+        	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "", "The temperature of "+container.getBeer().getName()+" is dangerously high!"));
+        	return "Danger";        	
         }
 	}
 
